@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Landing Page</title>
+  <style>
+    /* Styling for the body and sections */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    .landing {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #f1f1f1;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .landing.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+    .content {
+      height: 100vh;
+      background: #ffffff;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Initial landing section -->
+  <div class="landing">
+    <h1>Welcome to the Landing Page</h1>
+    <p>Scroll down to explore</p>
+  </div>
+
+  <!-- Actual content section -->
+  <div class="content">
+    <h1>Actual Landing Page Content</h1>
+    <p>This is the actual content of the landing page.</p>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', revealContent);
+
+    function revealContent() {
+      // Get references to the landing and content sections
+      var landing = document.querySelector('.landing');
+      var content = document.querySelector('.content');
+
+      // Get the position of the sections relative to the viewport
+      var landingPosition = landing.getBoundingClientRect().top;
+      var contentPosition = content.getBoundingClientRect().top;
+
+      // Calculate the window height
+      var windowHeight = window.innerHeight;
+
+      // Check if the landing section is in the viewport
+      if (landingPosition < windowHeight / 2) {
+        // Add the "visible" class to trigger the fade-in and move-up animation
+        landing.classList.add('visible');
+      } else {
+        // Remove the "visible" class if the landing section is not in the viewport
+        landing.classList.remove('visible');
+      }
+
+      // Check if the content section is in the viewport
+      if (contentPosition < windowHeight / 2) {
+        // Add the "visible" class to trigger the fade-in and move-up animation
+        content.classList.add('visible');
+      } else {
+        // Remove the "visible" class if the content section is not in the viewport
+        content.classList.remove('visible');
+      }
+    }
+  </script>
+</body>
+</html>
